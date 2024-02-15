@@ -92,24 +92,16 @@ function serveErrorPage(res) {
 }
 
 // Event emitter for HTTP status codes
-// This event is emitted to capture and log HTTP status codes generated during server responses.
-//This is useful for debugging and troubleshooting.
 myEmitter.on('httpStatus', (statusCode) => {
     console.log(`HTTP Status code: ${statusCode}`);
 });
 
 // Event emitter for routes that are not the home route
-// This event is emitted when a client accesses a route that is not the home route. 
-//It provides visibility into the routes that are being accessed. 
-//This is useful for debugging and troubleshooting.
 myEmitter.on('notHomeRouteAccessed', (message) => {
     console.warn(`Message: ${message}`);
 });
 
 // Event emitter to call the logEvents function
-// This event is emitted when a client accesses a route that is not the home route. 
-//It provides visibility into the routes that are being accessed. 
-//This is useful for debugging and troubleshooting.
 myEmitter.on('log', (code, message) => {
     logEvents(code, message);
 });

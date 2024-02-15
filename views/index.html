@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>My Home Page</h1>
-    <p>Welcome to my home page!</p>
+    <p>Welcome to my home page</p>
     <button id="previousUrlButton">Previous Page</button>
     <button id="nextUrlButton">Next Page</button>
     <script>
@@ -32,7 +32,7 @@
         const previousUrlButton = document.getElementById('previousUrlButton')
         previousUrlButton.addEventListener('click', () => {
             // Decrement the index and wrap around if necessary
-            currentIndex = (currentIndex - 1 + urlArray.length) % urlArray.length;
+            currentIndex = (currentIndex - 1) % urlArray.length;
 
             // Change the URL to the new location based on the updated index
             window.location.href = urlArray[currentIndex];
