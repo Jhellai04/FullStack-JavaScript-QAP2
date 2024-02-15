@@ -79,11 +79,11 @@ function serveErrorPage(res) {
             // If the error page file is not found, serve a simple 404 page
             res.writeHead(404, { "Content-Type": "text/html" });
             res.write("<h1>404 Not Found</h1>");
-            res.write("<p>The page you are looking for does not exist.</p>");
+            res.write("<p>The requested URL is not found.</p>");
             res.end();
         } else {
             myEmitter.emit('httpStatus', 404);
-            myEmitter.emit('log', 404, `Your'e lost! This page does not exist.`);
+            myEmitter.emit('log', 404, `The requested URL is not found.`);
             res.writeHead(404, { "Content-Type": "text/html" });
             res.write(data);
             res.end();
