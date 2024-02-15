@@ -79,11 +79,11 @@ function serveErrorPage(res) {
             // If the error page file is not found, serve a simple 404 page
             res.writeHead(404, { "Content-Type": "text/html" });
             res.write("<h1>404 Not Found</h1>");
-            res.write("<p>The page you are looking for does not exist.</p>");
+            res.write("<p>The requested URL is not found.</p>");
             res.end();
         } else {
             myEmitter.emit('httpStatus', 404);
-            myEmitter.emit('log', 404, `Your'e lost! This page does not exist.`);
+            myEmitter.emit('log', 404, `The requested URL is not found.`);
             res.writeHead(404, { "Content-Type": "text/html" });
             res.write(data);
             res.end();
@@ -92,24 +92,16 @@ function serveErrorPage(res) {
 }
 
 // Event emitter for HTTP status codes
-// This event is emitted to capture and log HTTP status codes generated during server responses.
-//This is useful for debugging and troubleshooting.
 myEmitter.on('httpStatus', (statusCode) => {
     console.log(`HTTP Status code: ${statusCode}`);
 });
 
 // Event emitter for routes that are not the home route
-// This event is emitted when a client accesses a route that is not the home route. 
-//It provides visibility into the routes that are being accessed. 
-//This is useful for debugging and troubleshooting.
 myEmitter.on('notHomeRouteAccessed', (message) => {
     console.warn(`Message: ${message}`);
 });
 
 // Event emitter to call the logEvents function
-// This event is emitted when a client accesses a route that is not the home route. 
-//It provides visibility into the routes that are being accessed. 
-//This is useful for debugging and troubleshooting.
 myEmitter.on('log', (code, message) => {
     logEvents(code, message);
 });
